@@ -1,0 +1,122 @@
+﻿@model TMecanicoC.Models.Personas
+
+@{
+    ViewData["Title"] = "Crear";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*@section Scripts{
+    <Script type="text/javascript">
+        function SeleccionRol() {
+            var cn = document.getElementById("Rol").value;
+            switch(cn){
+                case == "1":
+                break;
+                case == "2":
+                break;
+                case == "3":
+                    document.getElementById('atribPropietario').style.display = 'block';
+                break;
+                case == "4":
+                    document.getElementById('atribMecanico').style.display = 'block';
+                break;
+            }           
+        }
+    </Script>
+}*@
+
+@section Scripts{
+    <Script>
+        function SeleccionRol() {
+            
+            var cn = document.getElementById('Rol').value;
+                     alert(cn);
+            if (cn == "4") {
+                document.getElementById('atribMecanico').style.display = 'block';
+                document.getElementById('atribPropietario').style.display = 'none';
+            }
+            if (cn == "3"){
+               document.getElementById('atribMecanico').style.display = 'none';
+               document.getElementById('atribPropietario').style.display = 'block';
+            }
+            if (cn == "2") {
+                document.getElementById('atribMecanico').style.display = 'none';
+                document.getElementById('atribPropietario').style.display = 'none';}
+        }
+    </Script>
+}
+
+    <h1>Adicionar nueva persona</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="DocIdentificacion" class="control-label"></label>
+                    <input asp-for="DocIdentificacion" class="form-control" />
+                    <span asp-validation-for="DocIdentificacion" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Nombres" class="control-label"></label>
+                    <input asp-for="Nombres" class="form-control" />
+                    <span asp-validation-for="Nombres" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Apellidos" class="control-label"></label>
+                    <input asp-for="Apellidos" class="form-control" />
+                    <span asp-validation-for="Apellidos" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Credencial" class="control-label"></label>
+                    <input asp-for="Credencial" class="form-control" />
+                    <span asp-validation-for="Credencial" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                    <label asp-for="IdRol" class="control-label"></label>
+                    <select asp-for="IdRol" class="form-control" asp-items="ViewBag.IdRol" onclick="prueba(value);"></select>
+                </div>*@
+                <div class="form-group">
+                    <select id="Rol" name="Rol" onchange="SeleccionRol();">
+                        <option value="">Seleccione el rol</option>
+                        <option value="1">Jefe de operaciones</option>
+                        <option value="2">Auxiliar</option>
+                        <option value="3">Propietario</option>
+                        <option value="4">Mecanico</option>
+                    </select>
+                </div>
+                <div class="form-group" id="atribMecanico">
+                    <div class="form-group">
+                        <label asp-for="CiudadDireccion" class="control-label">Dirección</label>
+                        <input asp-for="CiudadDireccion" class="form-control" />
+                        <span asp-validation-for="CiudadDireccion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CorreoNivelEstudio" class="control-label">Nivel de estudio</label>
+                        <input asp-for="CorreoNivelEstudio" class="form-control" />
+                        <span asp-validation-for="CorreoNivelEstudio" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group" id="atribPropietario">
+                    <div class="form-group">
+                        <label asp-for="CiudadDireccion" class="control-label">Ciudad</label>
+                        <input asp-for="CiudadDireccion" class="form-control" />
+                        <span asp-validation-for="CiudadDireccion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CorreoNivelEstudio" class="control-label">Correo</label>
+                        <input asp-for="CorreoNivelEstudio" class="form-control" />
+                        <span asp-validation-for="CorreoNivelEstudio" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Guardo este registro?" class="btn btn-primary" /> |
+                    <a asp-action="Index">Volver a Listar</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+

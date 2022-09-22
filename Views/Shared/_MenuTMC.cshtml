@@ -1,0 +1,48 @@
+﻿@*Esta vista parcial es para mostrar los menus de la base de datos en la barra *@
+@using System.Text.Json;
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor;
+
+@*Obtener el menu*@
+@{
+    string menuJson = HttpContextAccessor.HttpContext.Session.GetString("menu");
+    // Con JsonSerializer la variable menuJson se convierte en un tipo de lista (cadena de texto)
+    // Con Deserialize la cadena de texto Json se convierte en un elemento de listaMenu
+    List<Menu> listaMenu = JsonSerializer.Deserialize<List<Menu>>(menuJson);
+    // con lo anterior vamos a poder recorrer todos los elementos que contiene listaMenu
+}
+
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+    @foreach (var menu in listaMenu)
+    {   // diseño del menu
+        bool tiene_submenu = menu.InverseIdMenuPadreNavigation.Count > 0 ? true : false;
+        string claseMenu = tiene_submenu ? "nav-item dropdown" : "nav-item";
+
+        <li class="@claseMenu">
+            @if (tiene_submenu)
+            {
+                <a class="nav-link dropdown-toggle" href="@menu.Url" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    @menu.Descripcion
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    @foreach (var submenu in menu.InverseIdMenuPadreNavigation)
+                    {
+                        <li><a class="dropdown-item" href="@submenu.Url">@submenu.Descripcion</a></li>
+                    }
+                </ul>
+            }
+            else
+            { // No hay submenus, el campo IdMenuPadre de la tabla Menu esta en null
+                <a class="nav-link" href="@menu.Url" aria-current="page">
+                    @menu.Descripcion
+                </a>
+            }
+        </li>
+    }
+</ul>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<TMecanicoC.Models.Personas>
+
+@{
+    ViewData["Title"] = "Listar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Relación de personas</h1>
+
+<p>
+    <a asp-action="Create">Adicionar nueva persona</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellidos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Credencial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CiudadDireccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CorreoNivelEstudio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdRolNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Credencial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CiudadDireccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorreoNivelEstudio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdRolNavigation.IdRol)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.DocIdentificacion">Modificar</a> |
+                @*<a asp-action="Details" asp-route-id="@item.DocIdentificacion">Details</a> |*@
+                <a asp-action="Delete" asp-route-id="@item.DocIdentificacion">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

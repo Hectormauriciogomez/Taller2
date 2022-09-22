@@ -1,0 +1,85 @@
+﻿@model IEnumerable<TMecanicoC.Models.Vehiculos>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CapacidadPasajeros)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CilindradaMotor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaisOrigen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtrasCaracteristicas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocIdMecanicoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocIdPropietarioNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CapacidadPasajeros)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CilindradaMotor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaisOrigen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OtrasCaracteristicas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocIdMecanicoNavigation.DocIdentificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocIdPropietarioNavigation.DocIdentificacion)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Placa">Edit</a> |
+                @*@*<a asp-action="Details" asp-route-id="@item.Placa">Details</a> |*@
+                <a asp-action="Delete" asp-route-id="@item.Placa">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

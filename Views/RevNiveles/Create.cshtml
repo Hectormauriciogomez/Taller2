@@ -1,0 +1,63 @@
+﻿@model TMecanicoC.Models.RevNiveles
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+
+<h4>RevNiveles</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FechaHora" class="control-label"></label>
+                <input asp-for="FechaHora" class="form-control" />
+                <span asp-validation-for="FechaHora" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NivelAceite" class="control-label"></label>
+                <input asp-for="NivelAceite" class="form-control" />
+                <span asp-validation-for="NivelAceite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NivelFrenos" class="control-label"></label>
+                <input asp-for="NivelFrenos" class="form-control" />
+                <span asp-validation-for="NivelFrenos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NivelRefrigerante" class="control-label"></label>
+                <input asp-for="NivelRefrigerante" class="form-control" />
+                <span asp-validation-for="NivelRefrigerante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NivelDireccion" class="control-label"></label>
+                <input asp-for="NivelDireccion" class="form-control" />
+                <span asp-validation-for="NivelDireccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Placa" class="control-label"></label>
+                <select asp-for="Placa" class ="form-control" asp-items="ViewBag.Placa"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+</body>
+</html>
